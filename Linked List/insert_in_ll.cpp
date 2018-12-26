@@ -13,7 +13,7 @@ public: node(int d){
   
   }
 
-  node *next;
+   node *next;
    int data ;
 
 };
@@ -48,7 +48,7 @@ void display(node *head){
      	cout<<temp->data ;
 
      	if(temp->next != NULL){
-     		cout<<"<-" ;
+     		cout<<"->" ;
      	}
 
      	temp = temp->next ;

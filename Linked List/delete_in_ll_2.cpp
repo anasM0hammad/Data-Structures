@@ -1,5 +1,7 @@
 //Anas, Lets code!!
 
+//DELETE FROM THE LAST NODE OF THE LINKED LIST
+
 #include <iostream>
 #include<stdlib.h>
 using namespace std;
@@ -38,19 +40,28 @@ node* insert(node *head , int d){
 }
 
 
-//FUNCTION TO DELETE A NODE FROM START
+//FUNCTION TO DELETE A NODE FROM END
 node* remove(node *head){
-    
-    node *temp = head ;
+
+	 node *temp = head ;
    
     if(head==NULL){
     	return NULL ;
     }
 
-    else{
-
-    	head = head->next ;
+    else if(head->next == NULL){
     	delete temp ;
+    	head = NULL ;
+    }
+
+    else{
+        //TRAVERSE THE POINTER TO LAST
+	    while(temp->next->next != NULL){
+	    	temp=temp->next;
+	    }
+
+    	delete temp->next;
+    	temp->next = NULL ;
     }
 
    return head ;
@@ -123,7 +134,7 @@ while(true){
               head=remove(head);
 
 	              if(head==NULL){
-	                cout<<"\nItem Deleted. Linked List is Empty Now.\n"	;
+	                cout<<"\nItem Deleted. Linked List is Empty Now.\n\n"	;
 	                break;
 	              }
 
