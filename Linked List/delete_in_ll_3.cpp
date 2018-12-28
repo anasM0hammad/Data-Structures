@@ -1,5 +1,7 @@
 //Anas, Lets code!!
-//PROGRAM TO DELELTE A NODE FROM START IN A LINKED LIST
+
+//DELETE A GIVEN NODE FROM THE LINKED LIST
+
 
 #include <iostream>
 #include<stdlib.h>
@@ -39,24 +41,51 @@ node* insert(node *head , int d){
 }
 
 
-//FUNCTION TO DELETE A NODE FROM START
-node* remove(node *head){
-    
-    node *temp = head ;
-   
-    if(head==NULL){
-    	return NULL ;
+//FUNCTION TO DELETE A NODE FROM END
+node* remove(node *head , int d){
+ 
+      int flag=0;    //INITIALLY GIVEN NODE IS NOT FOUND IN LL
+      node *onNode = head->next ;
+      node *beforeNode = head ;
+
+     
+        if(beforeNode->data == d){
+          flag=1;
+          delete beforeNode;
+          head= onNode;
+        }
+
+      else{
+
+        while(onNode != NULL){
+
+          if(onNode->data == d){
+          
+          	flag=1;    // NODE FOUND
+            beforeNode->next = onNode->next ;
+            delete onNode;
+
+          }
+        
+            onNode = onNode->next;
+            beforeNode = beforeNode->next ;
+            
+
+        }
+
     }
 
-    else{
+     if(flag){
+      cout<<"\nItem Deleted\n" ;
+     }
+     else{
+      cout<<"\nItem not Found\n";
+     }
 
-    	head = head->next ;
-    	delete temp ;
-    }
+     return head ;
 
-   return head ;
-} 
 
+}
 
 
 
@@ -96,7 +125,7 @@ while(true){
  
   cout<<"\n1.Insert Data ";
   cout<<"\n2.Display Current Linked List" ;
-  cout<<"\n3.Delete Node from Start " ;
+  cout<<"\n3.Delete a given node " ;
   cout<<"\n4.Exit " ;
   cout<<"\nEnter Your Choice : ";
   cin>>ch ;
@@ -113,23 +142,25 @@ while(true){
                cout<<endl;
                break ;
 
-      case 3:  //IF LINK LIST IS EMPTY
+      case 3:  cout<<"\n Enter the Item to be Deleted : ";
+               cin>>d ;
+
+               //IF LINK LIST IS EMPTY
                if(head==NULL){
-               	cout<<"Linked List is Already Empty";
+               	cout<<"\nLinked List is Already Empty\n";
                	break;
                }
 
+              head=remove(head , d);
 
-              cout<<"\nDeleted Item is : "<<head->data;
-              head=remove(head);
-
-	              if(head==NULL){
-	                cout<<"\nItem Deleted. Linked List is Empty Now.\n"	;
-	                break;
-	              }
-
-              cout<<"\nDelete Successful"<<endl ;
+              if(head==NULL){
+                cout<<"\nItem Deleted. Linked List is Empty Now.\n\n"	;
+                break;
+              }
+              
+              cout<<"\nCurrent Linked List : ";
               display(head); 
+              cout<<endl ;
               break;
 
       case 4: exit(0);
@@ -143,4 +174,5 @@ while(true){
 
 return 0 ;	
 }
+
 // Don't Worry.. code will Run...!!!!!
