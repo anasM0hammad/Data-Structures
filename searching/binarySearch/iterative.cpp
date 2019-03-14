@@ -15,10 +15,10 @@ int findPos(int arr[] , int key , int size){
             return mid ;
 
         else if(arr[mid] > key)
-           end = end-1 ;
+           end = mid-1 ;
 
         else
-          beg = beg+1 ;       
+          beg = mid+1 ;       
 
     }
 
